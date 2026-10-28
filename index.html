@@ -506,14 +506,11 @@
 
 <script>
   // ─────────────────────────────────────────────────────────────
-  //  WAITLIST ENDPOINT — Formspree
-  //  1. Crie uma conta grátis em https://formspree.io
-  //  2. Crie um novo form, copie o endpoint (ex: https://formspree.io/f/abcdwxyz)
-  //  3. Cole abaixo no lugar de 'https://formspree.io/f/YOUR_FORM_ID'
-  //  Enquanto o placeholder estiver aqui, o form mostra a mensagem de sucesso
-  //  mas NÃO envia (pra você testar o visual). Troque pra ativar o envio real.
+  //  WAITLIST ENDPOINT — FormSubmit (sem conta)
+  //  Os envios chegam em digo@thewatermouse.com. No primeiro envio, o FormSubmit
+  //  manda um e-mail de ativação ("Activate Form"); clique nele uma vez.
   // ─────────────────────────────────────────────────────────────
-  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+  const FORMSPREE_ENDPOINT = 'https://formsubmit.co/ajax/digo@thewatermouse.com';
 
   const form    = document.getElementById('waitlist-form');
   const emailEl = document.getElementById('gate-email');
@@ -555,6 +552,8 @@
         headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email: email,
+          _subject: 'Novo e-mail: lista de espera de inglês',
+          _captcha: 'false',
           source: 'learn-english.thewatermouse.com',
           list: 'Conversação de Entrevista — Waitlist'
         })
